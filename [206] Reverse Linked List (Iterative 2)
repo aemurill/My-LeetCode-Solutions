@@ -1,0 +1,29 @@
+/*
+Reverse a singly linked list.
+*/
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        return reverseListIter(NULL, head);
+    }
+    
+    //newHead stores the new reversed list as it's built
+    //head stores the original list/the pointer to the remainder of the original list.
+    ListNode* reverseListIter(ListNode* newHead, ListNode* head) {
+        if(head == NULL) return newHead;   //if H>NULL, then done
+        ListNode* tmp = head->next;       //T->1->next
+        head->next = newHead;             //1->NULL
+        
+        return reverseListIter(head, tmp);//do with head(1)->NULL, (2)
+    }
+};
+
