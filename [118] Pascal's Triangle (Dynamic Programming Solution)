@@ -1,0 +1,35 @@
+/*
+Given a non-negative integer numRows, generate the first numRows of Pascal's triangle.
+*/
+
+//dynamic programming solution 
+class Solution {
+public:
+    vector<vector<int>> data{100, vector<int>(100, -1)};
+    
+    vector<vector<int>> generate(int numRows) {
+        vector<vector<int>> output;
+        for(int i = 1; i <= numRows; i++){
+            vector<int> value;
+            output.push_back(value);
+            for(int j = 1; j <= i; j++){
+                output.back().push_back(getPascalValue(i, j));
+            }
+        }
+        return output;
+    }
+    
+    //f(i, j) = f(i - 1, j - 1) + f(i - 1, j)
+    int getPascalValue(int i, int j){
+        int value = -1;
+        if(data[i][j] != -1){
+            value = data[i][j];
+        }
+        else{
+            if(i == 1 || j == 1 || j == i) value = 1;
+            else value = getPascalValue(i - 1, j - 1) + getPascalValue(i - 1, j);           
+            data[i][j] = value;
+        }
+        return value;
+    }
+};
