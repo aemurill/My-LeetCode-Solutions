@@ -1,0 +1,25 @@
+class Solution {
+public:
+    map<int, int> fibMap;
+    map<int, int>::iterator it;
+    int value = -1;
+    
+    //F(0) = 0,   F(1) = 1
+    int fib(int N) {    
+        fibMap.insert(pair<int, int>(0,0));
+        fibMap.insert(pair<int, int>(1,1));
+        return fibDP(N);
+    }
+    
+    //F(N) = F(N - 1) + F(N - 2), for N > 1.
+    int fibDP(int N){
+        it = fibMap.find(N);
+        if(it != fibMap.end()){ //if found
+            value = it->second;
+        }else{
+            value = fibDP(N - 1) + fibDP(N - 2);
+            fibMap.insert(pair<int, int>(N,value));
+        }
+        return value;
+    }
+};
