@@ -1,0 +1,35 @@
+/*
+Given a non-negative index k where k ≤ 33, return the kth index row of the Pascal's triangle.
+*/
+
+class Solution {
+public:
+    vector<vector<int>> data{100, vector<int>(100, -1)};
+    
+    vector<int> getRow(int rowIndex) {
+        vector<int> output;
+        if(rowIndex < 1){
+            output.push_back(1);
+            return output;
+        }
+        int i = rowIndex+1;
+        for(int j = 1; j <= i; j++){
+            output.push_back(getPascalValue(i, j));
+        }
+        return output;
+    }
+    
+    //f(i, j) = f(i - 1, j - 1) + f(i - 1, j)
+    int getPascalValue(int i, int j){
+        int value = -1;
+        if(data[i][j] != -1){
+            value = data[i][j];
+        }
+        else{
+            if(i == 1 || j == 1 || j == i) value = 1;
+            else value = getPascalValue(i - 1, j - 1) + getPascalValue(i - 1, j);           
+            data[i][j] = value;
+        }
+        return value;
+    }
+};
