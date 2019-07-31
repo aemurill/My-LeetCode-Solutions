@@ -1,0 +1,27 @@
+/*
+  implement Pow(x,n) for:
+    -100.0 < x < 100.0.
+    n is a 32-bit signed integer, within the range [−2^31, 2^31 − 1].
+  ISSUES ENCOUNTERED: 
+    Must account for max int and min int values for n, which must be converted to a larger type.
+    Unable to resolve issue alone, relied on user8068R's post to understand a solution.
+
+    Intending on potentially converting to iterative solution.
+*/
+
+class Solution {
+public:
+    double myPow(double x, int n) {
+        long long int p = n;
+        if(n == 0) return 1;
+        if(n > 0) return myPowHelper(x, p); 
+        else return myPowHelper(1/x, p*-1);
+    }
+    
+    double myPowHelper(double x, long long int n) {
+        if(n == 1) return x;
+        double k = myPowHelper(x, n/2);
+        if(n%2 != 0) return k*k*x;
+        else return k*k;
+    }
+};
