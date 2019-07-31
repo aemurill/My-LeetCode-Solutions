@@ -1,3 +1,11 @@
+/*
+Complexity Analysis
+
+    Time complexity : O(n). Single loop upto n is required to calculate nth fibonacci number.
+
+    Space complexity : O(1). Constant space is used. 
+*/
+
 class Solution {
 /**
     Climbing stairs is always about climbing a static N steps by taking 1 or 2 steps.
