@@ -1,0 +1,26 @@
+/*
+This is taken from the solutions, for the sake of seeing it for myself + archiving it for reference.
+
+Complexity Analysis
+
+    Time complexity : O(log⁡n). pow method takes log⁡ n time.
+
+    Space complexity : O(1). Constant space is used.
+
+*/
+
+class Solution {
+/**
+    Climbing stairs is always about climbing a static N steps by taking 1 or 2 steps.
+    The total # of ways to reach step N is the sum of the ways to reach step N-1 & step N-2, because we must take 1 or 2 steps from them to reach N (respectively).
+    aka this is a fibonacci series problem.
+*/
+public:
+    int climbStairs(int n) {
+        //Fn = (1/sqrt(5)) * [((1+sqrt(5))/2)^(n+1) - ((1-sqrt(5))/2)^(n+1)]
+        double sqrt5 = sqrt(5);
+        double nSub1 = pow((1 + sqrt5)/2, n+1);
+        double nSub2 = pow((1 - sqrt5)/2, n+1);
+        return (int) ((1/sqrt5) * (nSub1 - nSub2));
+    }
+};
